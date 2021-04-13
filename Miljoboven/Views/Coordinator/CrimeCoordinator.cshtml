@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Department
+
+@{
+  Layout = "_CoordinatorLayout";
+}
+
+<h2>Detaljer för ärendet</h2>
+<p class="info">Du är inloggad som samordnare</p>
+
+@await Component.InvokeAsync("ShowOneErrand", ViewBag.Eid)
+
+<form asp-controller="Coordinator" asp-action="UpdateDepa" method="post">
+    <section id="bottomColumn">
+        <h3>Redigera ärende</h3>
+        <p>
+            Ange enhet:
+            <select asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.Department, "DepartmentId", "DepartmentName"))">
+                <option disabled selected="selected">Välj</option>       
+            </select>
+        </p>
+        <p><input class="button" type="submit" value="Spara" /></p>
+    </section>
+</form>

@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Employee
+@{
+    Layout = "_ManagerLayout";
+}
+
+<h2>Detaljer för ärendet</h2>
+<p class="info">Du är inloggad som avdelningschef</p>
+
+@await Component.InvokeAsync("ShowOneErrand", ViewBag.Eid)
+
+<form asp-action="UpdateEmp" asp-controller="Manager">
+    <section id="bottomColumn">
+        <h3>Redigera ärende</h3>
+        <p>
+            Ange handläggare:
+
+            <select asp-for="EmployeeId" asp-items="@(new SelectList(ViewBag.Employee, "EmployeeId", "EmployeeName"))">
+                <option disabled selected="selected">Välj</option>
+            </select>
+        </p>
+        <p><input type="checkbox" name="noAction" value="true" /> Ingen åtgärd: <input type="text" name="reason" value="Ange motivering" /></p>
+        <p><input class="button" type="submit" value="Spara" /></p>
+    </section>
+</form>

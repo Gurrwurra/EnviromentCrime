@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ErrandStatus
+@{
+    Layout = "_InvestigatorLayout";
+}
+
+<h2>Detaljer för ärendet</h2>
+<p class="info">Du är inloggad som handläggare</p>
+
+@await Component.InvokeAsync("ShowOneErrand", ViewBag.Eid)
+
+
+<form enctype="multipart/form-data" asp-controller="Investigator" asp-action="UpdateSta" method="post">
+    <section id="bottomColumn">
+        <h3>Redigera ärende</h3>
+        <p class="label">Händelser:</p>
+        <textarea name="events" rows="5" cols="60"></textarea>
+
+        <p class="label">Mer information:</p>
+        <textarea name="information" rows="5" cols="60"></textarea>
+
+        <p class="label">Prover:</p>
+        <input type="file" name="loadSample" />
+
+        <p class="label">Ladda upp bilder:</p>
+        <input type="file" name="loadImage" />
+
+
+        <p class="label">Ändring av status:</p>
+        <select asp-for="StatusId" asp-items="@(new SelectList(ViewBag.Status, "StatusId", "StatusName"))">
+            <option disabled selected="selected">Välj</option>
+        </select>
+
+        <p>
+            <input class="button" type="submit" value="Spara ändringarna" />
+        </p>
+    </section>
+</form>
+

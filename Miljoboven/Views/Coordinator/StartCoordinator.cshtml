@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IErrandRepository
+@{
+    Layout = "_CoordinatorLayout";
+}
+
+
+
+<h2>Ärenden</h2>
+<p class="info">Du är inloggad som samordnare</p>
+
+<table id="managerForm">
+    <tr>
+        <td class="label">Välj status:</td>
+        <td class="label">Välj avdelning:</td>
+        <td>&nbsp;</td>
+        <td class="label">Ärendenummer:</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <select name="status">
+                <option selected="selected">Välj alla</option>
+                @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
+                {
+                    <option>@errandStatus.StatusName</option>
+                }
+            </select>
+        </td>
+        <td>
+            <select name="department">
+                <option selected="selected">Välj alla</option>
+                @foreach (Department department in Model.Departments)
+                {
+                    <option>@department.DepartmentName</option>
+                }
+            </select>
+        </td>
+        <td><input class="button" type="submit" value="Hämta lista" /></td>
+        <td><input name="casenumber" /></td>
+        <td><input class="button" type="submit" value="Sök" /></td>
+    </tr>
+</table>
+
+@await Component.InvokeAsync("StartEmployee")
+

@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IErrandRepository
+@{
+}
+
+<table>
+    <tr>
+        <th>Ärende anmält</th>
+        <th>Ärendenummer</th>
+        <th>Miljöbrott</th>
+        <th>Status</th>
+        <th>Avdelning</th>
+        <th>Handläggare</th>
+    </tr>
+    @foreach (var errand in ViewBag.listErrands)
+    {
+        <tr>
+            <td>@errand.DateOfObservation.ToShortDateString()</td>
+            <td><a asp-controller=@ViewBag.Controller asp-action=@ViewBag.Action asp-route-id="@errand.ErrandID">@errand.RefNumber</a></td>
+            <td>@errand.TypeOfCrime</td>
+            <td>@errand.StatusName</td>
+            <td>@errand.DepartmentName</td>
+            <td>@errand.EmployeeName</td>
+        </tr>
+    }
+</table>

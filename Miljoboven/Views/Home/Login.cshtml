@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Login
+@{
+    Layout = "_CitizenLayout";
+}
+<form method="post" asp-controller="Home" asp-action="Login">
+    <div asp-validation-summary="All"></div>
+    <p>
+        <input type="hidden" name="isSubmitted" value="true" />
+    </p>
+    <p>
+        <span asp-validation-for="UserName" class="label">Användarnamn:</span><br />
+        <input asp-for="UserName" />
+    </p>
+    <p>
+        <span asp-validation-for="Password" class="label">Lösenord:</span><br />
+        <input asp-for="Password" />
+    </p>
+        <input type="hidden" asp-for="ReturnUrl" />
+    <p>
+        <input class="button" type="submit" value="Logga in"/>
+       
+    </p>
+</form>

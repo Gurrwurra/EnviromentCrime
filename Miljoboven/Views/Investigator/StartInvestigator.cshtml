@@ -1,0 +1,41 @@
+﻿@*
+    <a href="~/Views/Investigator/StartInvestigator.cshtml">~/Views/Investigator/StartInvestigator.cshtml</a>
+        For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IErrandRepository
+@{
+    Layout = "_InvestigatorLayout";
+}
+
+
+<h2>Ärenden</h2>
+<p class="info">Du är inloggad som handläggare</p>
+
+<table id="managerForm">
+    <tr>
+        <td class="label">Välj status:</td>
+        <td>&nbsp;</td>
+        <td class="label">Ärendenummer:</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <select name="status">
+                <option selected="selected">Välj alla</option>
+                @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
+                {
+                    <option>@errandStatus.StatusName</option>
+                }
+            </select>
+        </td>
+        <td><input class="button" type="submit" value="Hämta lista" /></td>
+        <td><input name="casenumber" /></td>
+        <td><input class="button" type="submit" value="Sök" /></td>
+    </tr>
+</table>
+
+<!--Nedan ser man en lista på ärenden-->
+
+@await  Component.InvokeAsync("StartEmployee")
+
+
